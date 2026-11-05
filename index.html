@@ -1,0 +1,1487 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Consciência Negra</title>
+
+    <!-- FONTE PRINCIPAL -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- BOOTSTRAP ICONS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+
+        /* ==========================================
+           PARTE 1 - CORES PRINCIPAIS
+        ========================================== */
+
+        :root {
+            --bg: #10100e;
+            --panel: #191916;
+            --panel-hover: #292921;
+            --text: #f5f0e5;
+            --muted: #b8b1a2;
+            --gold: #ff6600;
+            --line: #333333;
+        }
+
+        /* MODO CLARO */
+
+        [data-theme="light"] {
+            --bg: #cccccc;
+            --panel: #ffffff;
+            --panel-hover: #eee9dc;
+            --text: #24231f;
+            --muted: #000000;
+            --gold: #ff6600;
+            --line: #333333;
+        }
+
+
+        /* ==========================================
+           PARTE 2 - CONFIGURAÇÕES GERAIS
+        ========================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 25px;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            transition: background .3s, color .3s;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        section {
+            margin-bottom: 75px;
+            scroll-margin-top: 25px;
+        }
+
+
+        /* ==========================================
+           PARTE 3 - NAVBAR DESKTOP
+        ========================================== */
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 255px;
+            height: 100vh;
+            padding: 25px 15px 18px;
+            background: var(--panel);
+            border-right: 1px solid var(--line);
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+        }
+
+        /* IDENTIDADE VISUAL SEM LOGOTIPO CN */
+
+        .brand {
+            padding: 0 10px 27px;
+            font-size: 19px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .brand small {
+            display: block;
+            color: var(--muted);
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 1.2px;
+            margin-top: 5px;
+        }
+
+        /* IDENTIFICAÇÃO DO MENU */
+
+        .nav-label {
+            padding: 0 12px 10px;
+            color: var(--muted);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+        }
+
+        /* LINKS DA NAVBAR */
+
+        .nav {
+            display: grid;
+            gap: 5px;
+        }
+
+        .nav a {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 11px 12px;
+            border-radius: 10px;
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 600;
+            transition: background .2s, color .2s;
+        }
+
+        .nav a:hover,
+        .nav a.active {
+            background: var(--panel-hover);
+            color: var(--gold);
+        }
+
+        .ico {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 19px;
+        }
+
+        /* RODAPÉ DA SIDEBAR */
+
+        .sidebar-bottom {
+            margin-top: auto;
+            border-top: 1px solid var(--line);
+            padding-top: 15px;
+        }
+
+        .side-footer {
+            padding: 8px 10px 0;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+
+        /* ==========================================
+           PARTE 4 - BOTÕES DE TEMA
+        ========================================== */
+
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 10px 12px;
+            background: transparent;
+            color: var(--text);
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background .2s, color .2s;
+        }
+
+        .theme-toggle:hover {
+            background: var(--panel-hover);
+            color: var(--gold);
+        }
+
+        .theme-toggle i {
+            font-size: 16px;
+        }
+
+        .desktop-theme-toggle {
+            width: 100%;
+            margin-top: 14px;
+        }
+
+        .mobile-theme-toggle {
+            display: none;
+        }
+
+
+        /* ==========================================
+           PARTE 5 - CABEÇALHO MOBILE
+        ========================================== */
+
+        .mobile-header {
+            display: none;
+        }
+
+
+        /* ==========================================
+           PARTE 6 - CONTEÚDO PRINCIPAL
+        ========================================== */
+
+        main {
+            margin-left: 255px;
+            padding: 45px;
+            max-width: 1500px;
+        }
+
+
+        /* ==========================================
+           PARTE 7 - TÍTULOS E TEXTOS
+        ========================================== */
+
+        .eyebrow {
+            color: var(--gold);
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: clamp(36px, 6vw, 65px);
+            line-height: 1.1;
+            font-weight: 800;
+            max-width: 850px;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .description {
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 800px;
+        }
+
+
+        /* ==========================================
+           PARTE 8 - DESTAQUE INICIAL
+        ========================================== */
+
+        .hero {
+            min-height: 65vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 35px 0;
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .button-primary,
+        .button-secondary {
+            display: inline-block;
+            padding: 14px 22px;
+            border-radius: 9px;
+            font-size: 14px;
+            font-weight: 800;
+            transition: .2s;
+        }
+
+        .button-primary {
+            background: var(--gold);
+            color: #17140c;
+        }
+
+        .button-primary:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.1);
+        }
+
+        .button-secondary {
+            border: 1px solid var(--line);
+            color: var(--text);
+        }
+
+        .button-secondary:hover {
+            background: var(--panel);
+        }
+
+
+        /* ==========================================
+           PARTE 9 - CARTÕES DE CONTEÚDO
+           Todos os textos ficam visíveis.
+           Não existem botões Saiba mais.
+        ========================================== */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 25px;
+        }
+
+        .card {
+            min-width: 0;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 15px;
+            padding: 25px;
+            transition: .2s;
+        }
+
+        .card:hover {
+            border-color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        .card h3 {
+            color: var(--text);
+            font-size: 18px;
+            margin-bottom: 13px;
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .card p + p {
+            margin-top: 12px;
+        }
+
+
+        /* ==========================================
+           PARTE 10 - IMAGENS
+        ========================================== */
+
+        .content-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 14px;
+            margin-top: 20px;
+        }
+
+
+        /* ==========================================
+           PARTE 11 - GRÁFICOS
+        ========================================== */
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 28px;
+        }
+
+        .chart-card {
+            min-width: 0;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: var(--panel);
+        }
+
+        .chart-card h3 {
+            color: var(--text);
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+
+        .chart-description {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .chart-placeholder {
+            min-height: 230px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-align: center;
+            border: 2px dashed var(--line);
+            border-radius: 12px;
+            background: var(--bg);
+            color: var(--muted);
+        }
+
+        .chart-placeholder span {
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .chart-placeholder small {
+            max-width: 260px;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+
+        /* ==========================================
+           PARTE 12 - PARA REFLETIR
+           Fica no final da página.
+        ========================================== */
+
+        .reflection-section {
+            margin-top: 85px;
+            margin-bottom: 35px;
+        }
+
+        .reflection-card {
+            position: relative;
+            overflow: hidden;
+            padding: 35px;
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: var(--panel);
+        }
+
+        .reflection-card::after {
+            content: "";
+            position: absolute;
+            width: 190px;
+            height: 190px;
+            right: -70px;
+            bottom: -100px;
+            border-radius: 50%;
+            background: rgba(231, 185, 79, 0.08);
+            pointer-events: none;
+        }
+
+        .reflection-icon {
+            width: 45px;
+            height: 45px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 22px;
+            border-radius: 12px;
+            background: rgba(231, 185, 79, 0.12);
+            color: var(--gold);
+            font-size: 21px;
+        }
+
+        .reflection-card h2 {
+            font-size: 25px;
+            margin-bottom: 15px;
+        }
+
+        .reflection-card p {
+            position: relative;
+            z-index: 1;
+            max-width: 750px;
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.9;
+        }
+
+        .reflection-highlight {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+
+        /* ==========================================
+           PARTE 13 - RODAPÉ
+        ========================================== */
+
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 25px 0;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+
+        /* ==========================================
+           PARTE 14 - NAVBAR MOBILE
+        ========================================== */
+
+        .mobile-nav {
+            display: none;
+        }
+
+
+        /* ==========================================
+           PARTE 15 - AJUSTES PARA NOTEBOOKS
+        ========================================== */
+
+        @media (max-width: 1100px) {
+
+            main {
+                padding: 35px 28px;
+            }
+
+        }
+
+
+        /* ==========================================
+           PARTE 16 - RESPONSIVIDADE MOBILE
+        ========================================== */
+
+        @media (max-width: 700px) {
+
+            .sidebar {
+                display: none;
+            }
+
+            .mobile-header {
+                display: flex;
+                align-items: center;
+                padding: 13px 16px;
+                background: var(--panel);
+                border-bottom: 1px solid var(--line);
+                position: sticky;
+                top: 0;
+                z-index: 100;
+            }
+
+            .mobile-header strong {
+                font-size: 16px;
+            }
+
+            .mobile-header small {
+                display: block;
+                color: var(--muted);
+                font-size: 9px;
+                letter-spacing: 1px;
+                margin-top: 4px;
+            }
+
+            main {
+                margin-left: 0;
+                padding: 30px 20px 115px;
+            }
+
+            section {
+                margin-bottom: 60px;
+            }
+
+            .hero {
+                min-height: 55vh;
+            }
+
+            h1 {
+                font-size: 38px;
+            }
+
+            h2 {
+                font-size: 25px;
+            }
+
+            .description {
+                font-size: 14px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* MENU INFERIOR */
+
+            .mobile-nav {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                min-height: 70px;
+                padding: 7px 5px calc(7px + env(safe-area-inset-bottom));
+                background: var(--panel);
+                border-top: 1px solid var(--line);
+                z-index: 200;
+            }
+
+            .mobile-nav a {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+                color: var(--muted);
+                font-size: 10px;
+                font-weight: 600;
+                flex: 1;
+                min-width: 0;
+                padding: 8px 2px;
+            }
+
+            .mobile-nav a .ico {
+                font-size: 20px;
+            }
+
+            .mobile-nav a.active {
+                color: var(--gold);
+            }
+
+            /* BOTÃO DE TEMA NO CELULAR */
+
+            .mobile-theme-toggle {
+                display: flex;
+                flex: 1;
+                min-width: 0;
+                flex-direction: column;
+                gap: 4px;
+                padding: 5px 0;
+                border: 0;
+                border-radius: 0;
+                color: var(--muted);
+                font-size: 10px;
+            }
+
+            .mobile-theme-toggle i {
+                font-size: 20px;
+            }
+
+            .mobile-theme-toggle:hover {
+                background: transparent;
+            }
+
+            /* PARA REFLETIR NO CELULAR */
+
+            .reflection-section {
+                margin-top: 60px;
+            }
+
+            .reflection-card {
+                padding: 24px;
+            }
+
+            .reflection-card h2 {
+                font-size: 23px;
+            }
+
+            .reflection-card p {
+                font-size: 13px;
+            }
+
+        }
+
+
+        /* ==========================================
+           PARTE 17 - CELULARES PEQUENOS
+        ========================================== */
+
+        @media (max-width: 380px) {
+
+            h1 {
+                font-size: 32px;
+            }
+
+            main {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .mobile-nav a {
+                font-size: 9px;
+            }
+
+            .mobile-nav a .ico,
+            .mobile-theme-toggle i {
+                font-size: 19px;
+            }
+
+            .mobile-theme-toggle {
+                font-size: 9px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- ==========================================
+         PARTE 18 - NAVBAR DESKTOP
+    ========================================== -->
+
+    <aside class="sidebar">
+
+        <!-- IDENTIDADE VISUAL -->
+
+        <div class="brand">
+
+            Consciência Negra
+
+            <small>HISTÓRIA · CULTURA · RESISTÊNCIA</small>
+
+        </div>
+
+
+        <div class="nav-label">Navegação</div>
+
+
+        <!-- LINKS DO MENU -->
+
+        <nav class="nav">
+
+            <a class="active" href="#inicio">
+                <span class="ico"><i class="bi bi-house-door"></i></span>
+                Início
+            </a>
+
+            <a href="#historia">
+                <span class="ico"><i class="bi bi-book"></i></span>
+                História
+            </a>
+
+            <a href="#personalidades">
+                <span class="ico"><i class="bi bi-people"></i></span>
+                Pessoas Importantes
+            </a>
+
+            <a href="#cultura">
+                <span class="ico"><i class="bi bi-palette"></i></span>
+                Cultura
+            </a>
+
+            <a href="#consciencia">
+                <span class="ico"><i class="bi bi-lightbulb"></i></span>
+                Consciência
+            </a>
+
+            <a href="#graficos">
+                <span class="ico"><i class="bi bi-bar-chart"></i></span>
+                Gráficos
+            </a>
+
+        </nav>
+
+
+        <!-- BOTÃO DE TEMA -->
+
+        <button class="theme-toggle desktop-theme-toggle" type="button">
+            <i class="bi bi-sun-fill"></i>
+            <span>Modo claro</span>
+        </button>
+
+
+        <!-- RODAPÉ DA SIDEBAR -->
+
+        <div class="sidebar-bottom">
+
+    </aside>
+
+
+
+    <!-- ==========================================
+         PARTE 19 - CABEÇALHO MOBILE
+    ========================================== -->
+
+    <header class="mobile-header">
+
+        <div>
+            <strong>Consciência Negra</strong>
+            <small>HISTÓRIA · CULTURA · RESISTÊNCIA</small>
+        </div>
+
+    </header>
+
+
+
+    <!-- ==========================================
+         PARTE 20 - CONTEÚDO PRINCIPAL
+    ========================================== -->
+
+    <main>
+
+
+        <!-- ======================================
+             SEÇÃO 1 - INÍCIO
+        ====================================== -->
+
+        <section id="inicio" class="hero">
+
+            <h1>
+                Consciência Negra:
+                <span>conhecer para transformar.</span>
+            </h1>
+
+            <p class="description">
+                A Consciência Negra representa a valorização da história,
+                da cultura e da contribuição da população negra para a
+                formação da sociedade brasileira. É também um momento
+                de reflexão sobre o racismo, a igualdade e o respeito.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#historia" class="button-primary">
+                    Conheça a história
+                </a>
+
+                <a href="#cultura" class="button-secondary">
+                    Descubra a cultura
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ======================================
+             SEÇÃO 2 - HISTÓRIA
+        ====================================== -->
+
+        <section id="historia">
+
+            <p class="eyebrow">Conhecimento e memória</p>
+
+            <h2>História da Consciência Negra</h2>
+
+            <p class="description">
+
+                A história da Consciência Negra começa há muitos anos,
+                quando milhares de africanos foram trazidos à força para
+                o Brasil e obrigados a trabalhar como escravizados.
+                Durante esse período, sofreram muito, perderam sua
+                liberdade e foram separados de suas famílias.
+
+                <br><br>
+
+                Mesmo com tantas dificuldades, o povo negro nunca deixou
+                de lutar. Muitos resistiram à escravidão, fugiram e
+                formaram quilombos, como o Quilombo dos Palmares,
+                associado à liderança de Zumbi dos Palmares, que se
+                tornou um símbolo de resistência e liberdade.
+
+                <br><br>
+
+                Em 13 de maio de 1888, a escravidão foi oficialmente
+                abolida no Brasil, mas o preconceito e a desigualdade
+                continuaram. Por isso, o dia 20 de novembro passou a
+                representar a luta e a valorização da população negra.
+
+                <br><br>
+
+                Hoje, a Consciência Negra é uma oportunidade de conhecer
+                essa história, reconhecer a importância do povo negro
+                na formação do Brasil e lembrar que o respeito e a
+                igualdade devem existir todos os dias. Afinal, todos
+                merecem ser tratados com dignidade, independentemente
+                da cor da pele.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- ======================================
+             SEÇÃO 3 - PERSONALIDADES
+             Todos os textos ficam visíveis.
+        ====================================== -->
+
+        <section id="personalidades">
+
+            <p class="eyebrow">Pessoas que marcaram a história</p>
+
+            <h2>Personalidades negras</h2>
+
+            <p class="description">
+                Conheça algumas personalidades que contribuíram para
+                a história, a cultura e a luta por direitos no Brasil.
+                Suas trajetórias mostram a importância da representatividade
+                e da valorização da população negra.
+            </p>
+
+
+            <div class="cards">
+
+
+                <!-- PERSONALIDADE 1 -->
+
+                <article class="card">
+
+                    <h3>Carolina Maria de Jesus</h3>
+
+                    <p>
+
+
+                    texto
+
+                    </p>
+
+                </article>
+
+
+                <!-- PERSONALIDADE 2 -->
+
+                <article class="card">
+
+                    <h3>Machado de Assis</h3>
+
+                    <p>
+
+
+                    texto
+
+                    </p>
+
+                </article>
+
+
+                <!-- PERSONALIDADE 3 -->
+
+                <article class="card">
+
+                    <h3>Dandara dos Palmares</h3>
+
+                    <p>
+
+                    texto
+
+                    </p>
+
+                </article>
+
+
+                <!-- PERSONALIDADE 4 -->
+
+                <article class="card">
+
+                    <h3>Abdias do Nascimento</h3>
+
+                    <p>
+
+                    texto
+
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ======================================
+             SEÇÃO 4 - CULTURA
+             Todos os textos ficam visíveis.
+        ====================================== -->
+
+        <section id="cultura">
+
+            <p class="eyebrow">Tradições e expressões</p>
+
+            <h2>Cultura afro-brasileira</h2>
+
+            <p class="description">
+                A cultura afro-brasileira está presente na música,
+                na dança, na culinária, na religião, na linguagem
+                e em diversas tradições que fazem parte do Brasil.
+                Conheça algumas dessas manifestações.
+            </p>
+
+
+            <div class="cards">
+
+
+                <!-- CULTURA 1 -->
+
+                <article class="card">
+
+                    <h3>Samba</h3>
+
+                    <p>
+
+                    texto
+
+                    </p>
+
+                </article>
+
+
+                <!-- CULTURA 2 -->
+
+                <article class="card">
+
+                    <h3>Capoeira</h3>
+
+                    <p>
+
+                    texto
+
+                    </p>
+
+                </article>
+
+
+                <!-- CULTURA 3 -->
+
+                <article class="card">
+
+                    <h3>Maracatu</h3>
+
+                    <p>
+
+                    texto
+
+                    </p>
+
+                </article>
+
+
+                <!-- CULTURA 4 -->
+
+                <article class="card">
+
+                    <h3>Culinária afro-brasileira</h3>
+
+                    <p>
+
+                    texto
+
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ======================================
+             SEÇÃO 5 - CONSCIÊNCIA
+        ====================================== -->
+
+        <section id="consciencia">
+
+            <p class="eyebrow">Respeito e igualdade</p>
+
+            <h2>Por que a Consciência Negra é importante?</h2>
+
+            <p class="description">
+
+                texto
+
+            </p>
+
+        </section>
+
+
+
+        <!-- ======================================
+             SEÇÃO 6 - GRÁFICOS
+        ====================================== -->
+
+        <section id="graficos">
+
+            <p class="eyebrow">Dados e informações</p>
+
+            <h2>Gráficos e dados</h2>
+
+            <p class="description">
+                Esta área foi reservada para apresentar gráficos,
+                pesquisas e dados relacionados à Consciência Negra.
+                Utilize este espaço para mostrar informações
+                que ajudam a compreender a realidade social brasileira.
+            </p>
+
+            <div class="chart-grid">
+
+
+                <!-- GRÁFICO 1 -->
+
+                <article class="chart-card">
+
+                    <h3>Gráfico 1 - Título</h3>
+
+                    <p class="chart-description">
+                        Escreva aqui uma breve explicação sobre os dados.
+                    </p>
+
+                    <div class="chart-placeholder">
+
+                        <span>INSIRA SEU GRÁFICO AQUI</span>
+
+                        <small>
+                            Você pode inserir uma imagem ou código
+                            de gráfico neste espaço.
+                        </small>
+
+                    </div>
+
+                </article>
+
+
+                <!-- GRÁFICO 2 -->
+
+                <article class="chart-card">
+
+                    <h3>Gráfico 2 - Título</h3>
+
+                    <p class="chart-description">
+                        Escreva aqui uma breve explicação sobre os dados.
+                    </p>
+
+                    <div class="chart-placeholder">
+
+                        <span>INSIRA SEU GRÁFICO AQUI</span>
+
+                        <small>
+                            Você pode inserir uma imagem ou código
+                            de gráfico neste espaço.
+                        </small>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ======================================
+             SEÇÃO 7 - APRENDA MAIS
+        ====================================== -->
+
+        <section id="aprenda">
+
+            <p class="eyebrow">Curiosidades</p>
+
+            <h2>Curiosidades</h2>
+
+            <p class="description">
+
+
+                texto
+
+
+            </p>
+
+        </section>
+
+
+
+        <!-- ======================================
+             SEÇÃO 8 - PARA REFLETIR
+             Fica no final do conteúdo.
+             Não aparece na navbar.
+        ====================================== -->
+
+        <section class="reflection-section" id="refletir">
+
+            <div class="reflection-card">
+
+                <div class="reflection-icon">
+                    <i class="bi bi-chat-quote"></i>
+                </div>
+
+                <p class="eyebrow">reflexão</p>
+
+                <h2>Uma mensagem para pensar</h2>
+
+                <p>
+
+                    texto
+
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ==========================================
+         PARTE 21 - NAVBAR INFERIOR MOBILE
+    ========================================== -->
+
+    <nav class="mobile-nav">
+
+        <a class="active" href="#inicio">
+            <span class="ico"><i class="bi bi-house-door"></i></span>
+            <span>Início</span>
+        </a>
+
+        <a href="#historia">
+            <span class="ico"><i class="bi bi-book"></i></span>
+            <span>História</span>
+        </a>
+
+        <a href="#cultura">
+            <span class="ico"><i class="bi bi-palette"></i></span>
+            <span>Cultura</span>
+        </a>
+
+        <a href="#graficos">
+            <span class="ico"><i class="bi bi-bar-chart"></i></span>
+            <span>Gráficos</span>
+        </a>
+
+        <button class="theme-toggle mobile-theme-toggle" type="button">
+            <i class="bi bi-sun-fill"></i>
+            <span>Modo Claro</span>
+        </button>
+
+    </nav>
+
+
+
+    <!-- ==========================================
+         PARTE 22 - JAVASCRIPT
+    ========================================== -->
+
+    <script>
+
+        // ==========================================
+        // 1. NAVBAR INTELIGENTE
+        // Identifica a seção que está visível.
+        // ==========================================
+
+        const todosOsLinks = document.querySelectorAll(
+            '.nav a[href^="#"], .mobile-nav a[href^="#"]'
+        );
+
+        const secoes = document.querySelectorAll(
+            'main section[id]'
+        );
+
+        function marcarSecaoAtiva(id) {
+
+            todosOsLinks.forEach(link => {
+
+                const estaAtivo =
+                    link.getAttribute('href') === `#${id}`;
+
+                link.classList.toggle('active', estaAtivo);
+
+                if (estaAtivo) {
+                    link.setAttribute('aria-current', 'location');
+                } else {
+                    link.removeAttribute('aria-current');
+                }
+
+            });
+
+        }
+
+
+        // Detecta quando o usuário clica em uma opção.
+
+        todosOsLinks.forEach(link => {
+
+            link.addEventListener('click', () => {
+
+                const id = link.getAttribute('href').slice(1);
+
+                marcarSecaoAtiva(id);
+
+            });
+
+        });
+
+
+        // Detecta automaticamente a seção visível durante a rolagem.
+
+        const observadorDeSecoes = new IntersectionObserver(
+            (entradas) => {
+
+                const secaoVisivel = entradas
+                    .filter(entrada => entrada.isIntersecting)
+                    .sort(
+                        (a, b) =>
+                            b.intersectionRatio - a.intersectionRatio
+                    )[0];
+
+                if (secaoVisivel) {
+                    marcarSecaoAtiva(secaoVisivel.target.id);
+                }
+
+            },
+            {
+                root: null,
+                rootMargin: '-18% 0px -62% 0px',
+                threshold: [0, 0.1, 0.25, 0.5]
+            }
+        );
+
+
+        secoes.forEach(secao => {
+            observadorDeSecoes.observe(secao);
+        });
+
+
+        // Atualiza quando o endereço da página muda.
+
+        window.addEventListener('hashchange', () => {
+
+            const id = window.location.hash.slice(1);
+
+            if (id) {
+                marcarSecaoAtiva(id);
+            }
+
+        });
+
+
+        // Define a seção inicial.
+
+        const secaoInicial = window.location.hash
+            ? window.location.hash.slice(1)
+            : 'inicio';
+
+        marcarSecaoAtiva(secaoInicial);
+
+
+
+        // ==========================================
+        // 2. MODO CLARO E ESCURO
+        // Salva a escolha do usuário.
+        // ==========================================
+
+        const botoesTema = document.querySelectorAll('.theme-toggle');
+
+        function aplicarTema(tema) {
+
+            document.documentElement.setAttribute('data-theme', tema);
+
+            botoesTema.forEach(botao => {
+
+                const icone = botao.querySelector('i');
+                const texto = botao.querySelector('span');
+
+                const vaiAtivarClaro = tema === 'dark';
+
+                if (vaiAtivarClaro) {
+
+                    icone.className = 'bi bi-sun-fill';
+
+                    texto.textContent =
+                        botao.classList.contains('mobile-theme-toggle')
+                            ? 'Modo Claro'
+                            : 'Modo claro';
+
+                    botao.setAttribute(
+                        'aria-label',
+                        'Ativar modo claro'
+                    );
+
+                } else {
+
+                    icone.className = 'bi bi-moon-stars-fill';
+
+                    texto.textContent =
+                        botao.classList.contains('mobile-theme-toggle')
+                            ? 'Modo Escuro'
+                            : 'Modo escuro';
+
+                    botao.setAttribute(
+                        'aria-label',
+                        'Ativar modo escuro'
+                    );
+
+                }
+
+            });
+
+        }
+
+
+        // Carrega o tema salvo no navegador.
+
+        const temaSalvo = localStorage.getItem(
+            'tema-consciencia-negra'
+        );
+
+        const temaInicial = temaSalvo === 'light'
+            ? 'light'
+            : 'dark';
+
+        aplicarTema(temaInicial);
+
+
+        // Alterna o tema ao clicar nos botões.
+
+        botoesTema.forEach(botao => {
+
+            botao.addEventListener('click', () => {
+
+                const temaAtual =
+                    document.documentElement.getAttribute('data-theme');
+
+                const novoTema = temaAtual === 'dark'
+                    ? 'light'
+                    : 'dark';
+
+                aplicarTema(novoTema);
+
+                localStorage.setItem(
+                    'tema-consciencia-negra',
+                    novoTema
+                );
+
+            });
+
+        });
+
+
+        // ==========================================
+        // 3. SINCRONIZAÇÃO ENTRE ABAS
+        // ==========================================
+
+        window.addEventListener('storage', (event) => {
+
+            if (
+                event.key === 'tema-consciencia-negra' &&
+                event.newValue
+            ) {
+
+                aplicarTema(event.newValue);
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
